@@ -1,4 +1,4 @@
-package cn.xinyuan.service;
+package cn.xinyuan.content.service;
 
 import cn.xinyuan.common.util.EasyUITreeNode;
 import cn.xinyuan.common.util.XinYuanResult;

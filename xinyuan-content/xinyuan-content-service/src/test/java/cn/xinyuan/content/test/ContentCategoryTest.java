@@ -2,7 +2,7 @@ package cn.xinyuan.content.test;
 
 import cn.xinyuan.common.util.JSONUtils;
 import cn.xinyuan.pojo.TbContentCategory;
-import cn.xinyuan.service.ContentCategoryService;
+import cn.xinyuan.content.service.ContentCategoryService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;

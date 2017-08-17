@@ -7,7 +7,7 @@ import cn.xinyuan.common.util.exception.ExceptionFactoryUtil;
 import cn.xinyuan.mapper.TbContentMapper;
 import cn.xinyuan.pojo.TbContent;
 import cn.xinyuan.pojo.TbContentExample;
-import cn.xinyuan.service.ContentService;
+import cn.xinyuan.content.service.ContentService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;

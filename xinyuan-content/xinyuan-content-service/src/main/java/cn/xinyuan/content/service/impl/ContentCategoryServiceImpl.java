@@ -8,7 +8,7 @@ import cn.xinyuan.common.util.exception.ExceptionFactoryUtil;
 import cn.xinyuan.mapper.TbContentCategoryMapper;
 import cn.xinyuan.pojo.TbContentCategory;
 import cn.xinyuan.pojo.TbContentCategoryExample;
-import cn.xinyuan.service.ContentCategoryService;
+import cn.xinyuan.content.service.ContentCategoryService;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

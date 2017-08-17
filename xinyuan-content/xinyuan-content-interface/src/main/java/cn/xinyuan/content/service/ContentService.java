@@ -1,4 +1,4 @@
-package cn.xinyuan.service;
+package cn.xinyuan.content.service;
 
 import cn.xinyuan.common.util.EasyUIDataGridResult;
 import cn.xinyuan.common.util.XinYuanResult;
