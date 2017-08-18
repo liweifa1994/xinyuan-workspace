@@ -89,7 +89,7 @@ public class ContentServiceImpl implements ContentService {
         HashOperations<String, String, List<TbContent>> contentForHash = redisTemplate.opsForHash();
         List<TbContent> contentRedisList = contentForHash.get(contentListKey, contentCategoryId + "");
         if (contentRedisList != null && contentRedisList.size()>0){
-            logger.info("findContentList {result} in redis " + "contentCategoryId = " + JSONUtils.ObjToJson(contentRedisList) );
+            logger.info("findContentList {result} in redis " + JSONUtils.ObjToJson(contentRedisList) );
             return contentRedisList;
         }
         //从数据库中查询数据

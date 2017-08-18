@@ -19,15 +19,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration(locations="classpath:spring/applicationContext-*.xml")
 public class RedisTest {
     private Logger logger = LoggerFactory.getLogger(RedisTest.class);
-    @Autowired
-    private JedisClient jedisClient;
     @Test
     public void testRedisSet(){
 //        jedisClient.set("a","1234567");
 //        jedisClient.set("b","1234567");
 //        jedisClient.set("b","我是李伟发");
-        System.out.println(jedisClient.get("a"));
-        System.out.println(jedisClient.get("b"));
+//        System.out.println(jedisClient.get("a"));
+//        System.out.println(jedisClient.get("b"));
         logger.info("ok");
     }
 }
