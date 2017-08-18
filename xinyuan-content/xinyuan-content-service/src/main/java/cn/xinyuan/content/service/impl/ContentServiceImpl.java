@@ -13,6 +13,9 @@ import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.HashOperations;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -33,6 +36,12 @@ public class ContentServiceImpl implements ContentService {
 
     @Autowired
     private TbContentMapper contentMapper;
+
+    @Value("CONTENT_LIST")
+    private String contentListKey;
+
+    @Autowired
+    private RedisTemplate<String,List<TbContent>> redisTemplate;
 
     @Override
     public EasyUIDataGridResult findContentList(Long contentCategoryId, int page, int rows) {
@@ -71,13 +80,25 @@ public class ContentServiceImpl implements ContentService {
     }
     @Override
     public List<TbContent> findContentList(Long contentCategoryId) {
+        //打印入口参数
         logger.info("findContentList {param}" + "contentCategoryId = " + contentCategoryId );
         if (contentCategoryId == null) {
             ExceptionFactoryUtil.createDataFromatErrorException("输入的参数有误");
         }
+        //从redis中查询数据 如果查询到 直接返回数据
+        HashOperations<String, String, List<TbContent>> contentForHash = redisTemplate.opsForHash();
+        List<TbContent> contentRedisList = contentForHash.get(contentListKey, contentCategoryId + "");
+        if (contentRedisList != null && contentRedisList.size()>0){
+            logger.info("findContentList {result} in redis " + "contentCategoryId = " + JSONUtils.ObjToJson(contentRedisList) );
+            return contentRedisList;
+        }
+        //从数据库中查询数据
         List<TbContent> tbContentList = getList(contentCategoryId);
         if (tbContentList != null && tbContentList.size()>0){
-             return tbContentList;
+            logger.info("findContentList {result} in redis " + "contentCategoryId = " + JSONUtils.ObjToJson(contentRedisList) );
+            //缓存数据 到redis
+            contentForHash.put(contentListKey,contentCategoryId + "",tbContentList);
+            return tbContentList;
         }else {
             logger.error("返回结果为空");
             ExceptionFactoryUtil.createResultException("返回结果为空");

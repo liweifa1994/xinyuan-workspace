@@ -28,7 +28,7 @@ public class ContentServiceTest {
     @Test
     public void testselectContentCategory(){
         logger.info("begin ");
-        logger.info(JSONUtils.ObjToJson(contentService.findContentList(89l,1,20)));
+        logger.info(JSONUtils.ObjToJson(contentService.findContentList(89l)));
         logger.info("end");
     }
     @Test

@@ -2,6 +2,7 @@ package cn.xinyuan.content.service.impl;
 
 import cn.xinyuan.content.service.JedisClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
@@ -11,6 +12,8 @@ import redis.clients.jedis.JedisPool;
  * Time:下午6:55
  * Mail:josli@kargocard.com
  */
+
+@Component
 public class JedisClientPool implements JedisClient {
 
     @Autowired
