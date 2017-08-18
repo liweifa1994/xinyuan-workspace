@@ -1,7 +1,8 @@
-package cn.xinyuan.service.impl;
+package cn.xinyuan.content.service.impl;
 
 import java.util.List;
 
+import cn.xinyuan.content.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,10 +13,9 @@ import cn.xinyuan.common.util.EasyUIDataGridResult;
 import cn.xinyuan.mapper.TbItemMapper;
 import cn.xinyuan.pojo.TbItem;
 import cn.xinyuan.pojo.TbItemExample;
-import cn.xinyuan.service.ItemService;
 
 @Service
-public class ItemServiceImpl implements ItemService{
+public class ItemServiceImpl implements ItemService {
 
 	@Autowired
 	private TbItemMapper itemMapper;

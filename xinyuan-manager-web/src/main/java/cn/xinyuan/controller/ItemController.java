@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.xinyuan.pojo.TbItem;
-import cn.xinyuan.service.ItemService;
+import cn.xinyuan.content.service.ItemService;
 
 @Controller
 public class ItemController {

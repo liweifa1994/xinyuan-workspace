@@ -13,7 +13,7 @@
     <context:component-scan base-package="cn.xinyuan.service"/>
     <!--<dubbo:application name="xinyuan-manager-web"/>-->
     <!--<dubbo:registry protocol="zookeeper" address="127.0.0.1:2181"/>-->
-    <!--<dubbo:service interface="cn.xinyuan.service.ItemService"-->
+    <!--<dubbo:service interface="ItemService"-->
                    <!--ref="itemServiceImpl" timeout="6000000"></dubbo:service>-->
 
 </beans>

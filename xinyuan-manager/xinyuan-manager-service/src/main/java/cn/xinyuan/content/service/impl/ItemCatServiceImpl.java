@@ -1,12 +1,12 @@
-package cn.xinyuan.service.impl;
+package cn.xinyuan.content.service.impl;
 
 import cn.xinyuan.common.util.Constent;
 import cn.xinyuan.common.util.EasyUITreeNode;
 import cn.xinyuan.common.util.exception.ExceptionFactoryUtil;
+import cn.xinyuan.content.service.ItemCatService;
 import cn.xinyuan.mapper.TbItemCatMapper;
 import cn.xinyuan.pojo.TbItemCat;
 import cn.xinyuan.pojo.TbItemCatExample;
-import cn.xinyuan.service.ItemCatService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
