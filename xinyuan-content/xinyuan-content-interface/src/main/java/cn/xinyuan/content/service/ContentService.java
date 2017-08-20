@@ -30,6 +30,8 @@ public interface ContentService {
      */
     List<TbContent> findContentList(Long contentCategoryId);
 
+    List<TbContent> getList(Long contentCategoryId);
+
     /**
      * 更新或新增内容
      * @param content
