@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 /**
  * User:josli li
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  * Time:下午4:58
  * Mail:josli@kargocard.com
  */
-@Component
+@Service
 public class MQProducerImpl implements MQProducer {
     @Autowired
     private AmqpTemplate amqpTemplate;
