@@ -12,7 +12,9 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -37,7 +39,10 @@ public class ContentServiceImpl implements ContentService {
     @Autowired
     private TbContentMapper contentMapper;
 
-    @Value("CONTENT_LIST")
+    @Autowired
+    @Qualifier("contentRabbitMQRedisService")
+    private AmqpTemplate contentRabbitMQRedisService;
+    @Value("#{contentConfig.CONTENT_LIST}")
     private String contentListKey;
 
     @Autowired
@@ -72,7 +77,7 @@ public class ContentServiceImpl implements ContentService {
      * @param contentCategoryId
      * @return
      */
-    private List<TbContent> getList(Long contentCategoryId){
+    public List<TbContent> getList(Long contentCategoryId){
          TbContentExample tbContentExample = new TbContentExample();
          TbContentExample.Criteria criteria = tbContentExample.createCriteria();
          criteria.andCategoryIdEqualTo(contentCategoryId);
@@ -132,7 +137,7 @@ public class ContentServiceImpl implements ContentService {
             logger.error(resutlMsg);
             ExceptionFactoryUtil.createResultException(resutlMsg);
         }
-
+        contentRabbitMQRedisService.convertAndSend(content.getCategoryId());
         return XinYuanResult.ok(resutlMsg);
     }
 
@@ -143,11 +148,14 @@ public class ContentServiceImpl implements ContentService {
             ExceptionFactoryUtil.createDataFromatErrorException("输入的参数有误");
         }
         try {
+
+            TbContent content = contentMapper.selectByPrimaryKey(contentId);
             int i = contentMapper.deleteByPrimaryKey(contentId);
             if (i<=0){
                 ExceptionFactoryUtil.createResultException("删除数据失败,数据可能不存在");
             }
             logger.info(" exec result   "+ JSONUtils.ObjToJson(i));
+            contentRabbitMQRedisService.convertAndSend(content.getCategoryId());
             return XinYuanResult.ok("删除数据成功");
         }catch (Exception e){
             e.printStackTrace();

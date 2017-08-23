@@ -4,7 +4,6 @@ import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageListener;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 /**
  * User:josli li
@@ -14,14 +13,12 @@ import org.springframework.stereotype.Service;
  */
 
 @Component
-public class QueueListenter implements MessageListener {
+public class QueueListenter1 implements MessageListener {
 
     public void onMessage(Message msg) {
         try{
-            System.out.println("begin ");
+            System.out.println("hello kargo");
             System.out.println(new String(msg.getBody()));
-            System.out.println("end");
-
         }catch(Exception e){
             e.printStackTrace();
         }
