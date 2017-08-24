@@ -11,7 +11,12 @@ import cn.xinyuan.common.util.XinYuanResult;
  */
 public interface SearchItemService {
 
-    XinYuanResult imprtItemListToSolr();
+    /**
+     * 导入一条数据或全部数据到索引库中
+     * @param itemId
+     * @return
+     */
+    XinYuanResult imprtItemListToSolr(Long itemId);
 
     /**
      * 从solr中获取数据
@@ -21,4 +26,6 @@ public interface SearchItemService {
      * @return
      */
     SearchResult getItemList(String keyWorkds,int start,int rows);
+
+
 }

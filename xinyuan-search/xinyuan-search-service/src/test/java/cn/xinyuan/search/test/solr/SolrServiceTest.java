@@ -16,7 +16,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -38,7 +40,9 @@ public class SolrServiceTest {
 
     @Autowired
     private SearchItemService searchItemService;
-
+    @Autowired
+    @Qualifier("searchItemSolrRabbitmq")
+    private AmqpTemplate searchItemSolrRabbitmq;
 //    @Autowired
 //    private SearchSolrDao searchSolrDao;
     private Logger log = LoggerFactory.getLogger(SolrServiceTest.class);
@@ -85,37 +89,8 @@ public class SolrServiceTest {
 
     @Test
     public void testImport(){
-        try {
-            searchItemService.imprtItemListToSolr();
-        }catch (Exception e){
-            e.printStackTrace();
-
-        }
+        searchItemSolrRabbitmq.convertAndSend(536563l);
     }
 
 
-//    public SearchResult getSearchItem(SolrQuery query,String highitKey){
-//        try {
-//            QueryResponse queryResponse = solrServer.query(query);
-//            SearchResult searchResult = new SearchResult();
-//            searchResult.setRecordTotal(queryResponse.getResults().getNumFound());
-//            List<SearchItem> searchItemList = queryResponse.getBeans(SearchItem.class);
-//            if (null != highitKey && highitKey.length()>0){
-//                Map<String, Map<String, List<String>>> highlighting = queryResponse.getHighlighting();
-//                for (SearchItem item : searchItemList){
-//                    List<String> itemTitle = highlighting.get(item.getId()).get(highitKey);
-//                    //如果存在高亮的字 则获取高亮的字
-//                    if (itemTitle != null && itemTitle.size() >0){
-//                        item.setItem_title(itemTitle.get(0));
-//                    }
-//                }
-//            }
-//            searchResult.setItemList(searchItemList);
-//           return searchResult;
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-//
-//        return null;
-//    }
 }

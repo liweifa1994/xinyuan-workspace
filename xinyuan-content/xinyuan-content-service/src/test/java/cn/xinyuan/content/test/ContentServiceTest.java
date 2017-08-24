@@ -7,7 +7,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -25,6 +27,7 @@ public class ContentServiceTest {
     private Logger logger = LoggerFactory.getLogger(ContentServiceTest.class);
     @Autowired
     private ContentService contentService;
+
     @Test
     public void testselectContentCategory(){
         logger.info("begin ");

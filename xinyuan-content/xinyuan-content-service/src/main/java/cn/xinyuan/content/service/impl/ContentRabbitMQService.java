@@ -30,27 +30,26 @@ public class ContentRabbitMQService implements MessageListener {
     @Autowired
     private RedisTemplate<String,List<TbContent>> redisTemplate;
 
-
     public void onMessage(Message message) {
        String str = new String(message.getBody());
-        Double categoryId = null;
        try {
-           categoryId = Double.parseDouble(str);
+           Long categoryId = Long.parseLong(str);
+           //从数据库中查询数据
+           List<TbContent> tbContentList = contentService.getList(categoryId);
+           if (tbContentList != null && tbContentList.size()>0){
+               HashOperations<String, String, List<TbContent>> contentForHash = redisTemplate.opsForHash();
+               logger.info("ContentRabbitMQService onMessage {result} in redis " + "contentCategoryId = " + JSONUtils.ObjToJson(tbContentList) );
+               //缓存数据 到redis
+               logger.info("ContentRabbitMQService in redis hhash key-key"+contentListKey +"--->"+categoryId.intValue());
+               contentForHash.put(contentListKey, categoryId.intValue()+ "",tbContentList);
+           }else {
+               logger.error("返回结果为空");
+               //  ExceptionFactoryUtil.createResultException("返回结果为空");
+           }
        }catch (Exception e){
            e.printStackTrace();
            return;
        }
-        //从数据库中查询数据
-        List<TbContent> tbContentList = contentService.getList(categoryId.longValue());
-        if (tbContentList != null && tbContentList.size()>0){
-            HashOperations<String, String, List<TbContent>> contentForHash = redisTemplate.opsForHash();
-            logger.info("ContentRabbitMQService onMessage {result} in redis " + "contentCategoryId = " + JSONUtils.ObjToJson(tbContentList) );
-            //缓存数据 到redis
-            logger.info("ContentRabbitMQService in redis hhash key-key"+contentListKey +"--->"+categoryId.intValue());
-            contentForHash.put(contentListKey, categoryId.intValue()+ "",tbContentList);
-        }else {
-            logger.error("返回结果为空");
-          //  ExceptionFactoryUtil.createResultException("返回结果为空");
-        }
+
     }
 }

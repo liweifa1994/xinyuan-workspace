@@ -17,6 +17,7 @@
 			<list>
 				<value>classpath:conf/db.properties</value>
 				<value>classpath:conf/solr.properties</value>
+				<value>classpath:conf/rabbitmq.properties</value>
 			</list>
 		</property>
 	</bean>

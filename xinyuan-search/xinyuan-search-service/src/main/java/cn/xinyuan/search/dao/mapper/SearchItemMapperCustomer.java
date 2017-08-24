@@ -1,6 +1,7 @@
 package cn.xinyuan.search.dao.mapper;
 
 import cn.xinyuan.common.pojo.SearchItem;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.*;
 
@@ -12,5 +13,5 @@ import java.util.*;
  */
 public interface SearchItemMapperCustomer {
 
-    List<SearchItem> getItemList();
+    List<SearchItem> getItemList(@Param("itemId") Long itemId);
 }

@@ -38,9 +38,9 @@ public class SearchItemServiceImpl implements SearchItemService {
     @Autowired
     private SearchSolrDao searchSolrDao;
     @Override
-    public XinYuanResult imprtItemListToSolr() {
+    public XinYuanResult imprtItemListToSolr(Long itemId) {
 
-        List<SearchItem> itemList = itemMapperCustomer.getItemList();
+        List<SearchItem> itemList = itemMapperCustomer.getItemList(itemId);
         if (itemList != null && itemList.size()>0){
             try {
                 solrServer.addBeans(itemList);
