@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
+
+	<!--<bean id="contentConfig" class="org.springframework.beans.factory.config.PropertiesFactoryBean">-->
+		<!--&lt;!&ndash; 这里是PropertiesFactoryBean类，它也有个locations属性，也是接收一个数组，跟上面一样  &ndash;&gt;-->
+		<!--<property name="locations">-->
+			<!--<array>-->
+				<!--<value>classpath:conf/contentConfig.properties</value>-->
+			<!--</array>-->
+    	<!--</property>-->
+	<!--</bean>-->
+
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:conf/db.properties</value>
+				<value>classpath:conf/solr.properties</value>
+			</list>
+		</property>
+	</bean>
+</beans>
