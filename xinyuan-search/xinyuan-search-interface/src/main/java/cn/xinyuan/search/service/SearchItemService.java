@@ -2,7 +2,6 @@ package cn.xinyuan.search.service;
 
 import cn.xinyuan.common.pojo.SearchResult;
 import cn.xinyuan.common.util.XinYuanResult;
-import org.apache.solr.client.solrj.SolrQuery;
 
 /**
  * User:josli li
