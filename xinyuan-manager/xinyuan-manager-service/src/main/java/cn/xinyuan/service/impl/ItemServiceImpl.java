@@ -75,7 +75,8 @@ public class ItemServiceImpl implements ItemService {
 		itemDesc.setItemDesc(desc);
 		itemDesc.setItemId(itemId);
 		itemDescMapper.insert(itemDesc);
-		return null;
+		
+		return ;
 	}
 
 
