@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="xinyuan-manager-service:war">
-    <output-path>$PROJECT_DIR$/xinyuan-manager/xinyuan-manager-service/target</output-path>
-    <root id="archive" name="xinyuan-manager-service.war">
-      <element id="artifact" artifact-name="xinyuan-manager-service:war exploded" />
-    </root>
-  </artifact>
-</component>
