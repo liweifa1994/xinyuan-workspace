@@ -6,7 +6,7 @@ import cn.xinyuan.common.util.EasyUITreeNode;
 import cn.xinyuan.common.util.exception.DataFromatErrorException;
 import cn.xinyuan.common.util.exception.DataNullException;
 import cn.xinyuan.common.util.exception.ResultException;
-import cn.xinyuan.content.service.ItemCatService;
+import cn.xinyuan.service.ItemCatService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -16,7 +16,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import cn.xinyuan.pojo.TbItem;
-import cn.xinyuan.content.service.ItemService;
+import cn.xinyuan.service.ItemService;
 
 /**
  * 商品测试类

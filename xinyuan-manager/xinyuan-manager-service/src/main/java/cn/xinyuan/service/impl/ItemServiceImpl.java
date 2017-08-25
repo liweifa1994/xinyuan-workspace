@@ -1,8 +1,10 @@
-package cn.xinyuan.content.service.impl;
+package cn.xinyuan.service.impl;
 
 import java.util.List;
 
-import cn.xinyuan.content.service.ItemService;
+import cn.xinyuan.common.util.XinYuanResult;
+import cn.xinyuan.service.ItemService;
+import cn.xinyuan.service.SequenceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,12 +16,17 @@ import cn.xinyuan.mapper.TbItemMapper;
 import cn.xinyuan.pojo.TbItem;
 import cn.xinyuan.pojo.TbItemExample;
 
+/**
+ * 商品管理service
+ */
 @Service
 public class ItemServiceImpl implements ItemService {
 
 	@Autowired
 	private TbItemMapper itemMapper;
-	
+	@Autowired
+	private SequenceService sequenceService ;
+
 	@Override
 	public TbItem getItemById(long itemId) {
 		return itemMapper.selectByPrimaryKey(itemId);
@@ -40,7 +47,13 @@ public class ItemServiceImpl implements ItemService {
 		result.setTotal(pageInfo.getSize());
 		result.setRows(pageInfo.getList());
 		return result;
-	}	
+	}
 
-	
+	@Override
+	public XinYuanResult addItem(TbItem item, String desc) {
+
+		return null;
+	}
+
+
 }

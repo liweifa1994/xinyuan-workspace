@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.xinyuan.mapper.SequenceValueItemMapper" >
+  <resultMap id="BaseResultMap" type="cn.xinyuan.pojo.SequenceValueItem" >
+    <id column="SEQ_NAME" property="seqName" jdbcType="VARCHAR" />
+    <result column="SEQ_ID" property="seqId" jdbcType="DECIMAL" />
+    <result column="LAST_UPDATED_STAMP" property="lastUpdatedStamp" jdbcType="TIMESTAMP" />
+    <result column="CREATED_STAMP" property="createdStamp" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    SEQ_NAME, SEQ_ID, LAST_UPDATED_STAMP, CREATED_STAMP
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.xinyuan.pojo.SequenceValueItemExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from SEQUENCE_VALUE_ITEM
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from SEQUENCE_VALUE_ITEM
+    where SEQ_NAME = #{seqName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from SEQUENCE_VALUE_ITEM
+    where SEQ_NAME = #{seqName,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.xinyuan.pojo.SequenceValueItemExample" >
+    delete from SEQUENCE_VALUE_ITEM
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.xinyuan.pojo.SequenceValueItem" >
+    insert into SEQUENCE_VALUE_ITEM (SEQ_NAME, SEQ_ID, LAST_UPDATED_STAMP, 
+      CREATED_STAMP)
+    values (#{seqName,jdbcType=VARCHAR}, #{seqId,jdbcType=DECIMAL}, #{lastUpdatedStamp,jdbcType=TIMESTAMP}, 
+      #{createdStamp,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.xinyuan.pojo.SequenceValueItem" >
+    insert into SEQUENCE_VALUE_ITEM
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="seqName != null" >
+        SEQ_NAME,
+      </if>
+      <if test="seqId != null" >
+        SEQ_ID,
+      </if>
+      <if test="lastUpdatedStamp != null" >
+        LAST_UPDATED_STAMP,
+      </if>
+      <if test="createdStamp != null" >
+        CREATED_STAMP,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="seqName != null" >
+        #{seqName,jdbcType=VARCHAR},
+      </if>
+      <if test="seqId != null" >
+        #{seqId,jdbcType=DECIMAL},
+      </if>
+      <if test="lastUpdatedStamp != null" >
+        #{lastUpdatedStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdStamp != null" >
+        #{createdStamp,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.xinyuan.pojo.SequenceValueItemExample" resultType="java.lang.Integer" >
+    select count(*) from SEQUENCE_VALUE_ITEM
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update SEQUENCE_VALUE_ITEM
+    <set >
+      <if test="record.seqName != null" >
+        SEQ_NAME = #{record.seqName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.seqId != null" >
+        SEQ_ID = #{record.seqId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.lastUpdatedStamp != null" >
+        LAST_UPDATED_STAMP = #{record.lastUpdatedStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createdStamp != null" >
+        CREATED_STAMP = #{record.createdStamp,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update SEQUENCE_VALUE_ITEM
+    set SEQ_NAME = #{record.seqName,jdbcType=VARCHAR},
+      SEQ_ID = #{record.seqId,jdbcType=DECIMAL},
+      LAST_UPDATED_STAMP = #{record.lastUpdatedStamp,jdbcType=TIMESTAMP},
+      CREATED_STAMP = #{record.createdStamp,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.xinyuan.pojo.SequenceValueItem" >
+    update SEQUENCE_VALUE_ITEM
+    <set >
+      <if test="seqId != null" >
+        SEQ_ID = #{seqId,jdbcType=DECIMAL},
+      </if>
+      <if test="lastUpdatedStamp != null" >
+        LAST_UPDATED_STAMP = #{lastUpdatedStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdStamp != null" >
+        CREATED_STAMP = #{createdStamp,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where SEQ_NAME = #{seqName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.xinyuan.pojo.SequenceValueItem" >
+    update SEQUENCE_VALUE_ITEM
+    set SEQ_ID = #{seqId,jdbcType=DECIMAL},
+      LAST_UPDATED_STAMP = #{lastUpdatedStamp,jdbcType=TIMESTAMP},
+      CREATED_STAMP = #{createdStamp,jdbcType=TIMESTAMP}
+    where SEQ_NAME = #{seqName,jdbcType=VARCHAR}
+  </update>
+</mapper>

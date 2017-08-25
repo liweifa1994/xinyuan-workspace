@@ -1,4 +1,4 @@
-package cn.xinyuan.content.service;
+package cn.xinyuan.service;
 
 /**
  * User:josli li

@@ -10,10 +10,10 @@
     <context:component-scan base-package="cn.xinyuan.search"/>
     <!--<dubbo:application name="xinyuan-content-web"/>-->
     <!--<dubbo:registry protocol="zookeeper" address="${zookeeper.address}"/>-->
-    <!--<dubbo:service interface="cn.xinyuan.content.service.ContentCategoryService"-->
+    <!--<dubbo:service interface="ContentCategoryService"-->
                    <!--ref="contentCategoryServiceImpl" timeout="6000000"></dubbo:service>-->
 
-    <!--<dubbo:service interface="cn.xinyuan.content.service.ContentService"-->
+    <!--<dubbo:service interface="ContentService"-->
                    <!--ref="contentServiceImpl" timeout="6000000"></dubbo:service>-->
 
 </beans>

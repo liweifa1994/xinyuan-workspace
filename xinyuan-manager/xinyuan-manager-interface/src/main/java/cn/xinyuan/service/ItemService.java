@@ -1,6 +1,7 @@
-package cn.xinyuan.content.service;
+package cn.xinyuan.service;
 
 import cn.xinyuan.common.util.EasyUIDataGridResult;
+import cn.xinyuan.common.util.XinYuanResult;
 import cn.xinyuan.pojo.TbItem;
 
 public interface ItemService {
@@ -19,4 +20,12 @@ public interface ItemService {
 	 * @return
 	 */
 	EasyUIDataGridResult itemList(int page,int rows);
+
+	/**
+	 * 添加商品信息
+	 * @param item
+	 * @param desc
+	 * @return
+	 */
+	XinYuanResult addItem(TbItem item, String desc);
 }

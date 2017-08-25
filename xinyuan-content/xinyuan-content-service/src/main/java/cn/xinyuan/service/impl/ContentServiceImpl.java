@@ -1,4 +1,4 @@
-package cn.xinyuan.content.service.impl;
+package cn.xinyuan.service.impl;
 
 import cn.xinyuan.common.util.EasyUIDataGridResult;
 import cn.xinyuan.common.util.JSONUtils;
@@ -7,7 +7,7 @@ import cn.xinyuan.common.util.exception.ExceptionFactoryUtil;
 import cn.xinyuan.mapper.TbContentMapper;
 import cn.xinyuan.pojo.TbContent;
 import cn.xinyuan.pojo.TbContentExample;
-import cn.xinyuan.content.service.ContentService;
+import cn.xinyuan.service.ContentService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;

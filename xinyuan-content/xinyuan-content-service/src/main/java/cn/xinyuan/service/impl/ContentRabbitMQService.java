@@ -1,7 +1,7 @@
-package cn.xinyuan.content.service.impl;
+package cn.xinyuan.service.impl;
 
 import cn.xinyuan.common.util.JSONUtils;
-import cn.xinyuan.content.service.ContentService;
+import cn.xinyuan.service.ContentService;
 import cn.xinyuan.pojo.TbContent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

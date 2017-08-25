@@ -2,14 +2,12 @@ package cn.xinyuan.content.test;
 
 import cn.xinyuan.common.util.JSONUtils;
 import cn.xinyuan.pojo.TbContent;
-import cn.xinyuan.content.service.ContentService;
+import cn.xinyuan.service.ContentService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 

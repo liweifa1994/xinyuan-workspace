@@ -1,9 +1,9 @@
-package cn.xinyuan.content.service.impl;
+package cn.xinyuan.service.impl;
 
 import cn.xinyuan.common.util.Constent;
 import cn.xinyuan.common.util.EasyUITreeNode;
 import cn.xinyuan.common.util.exception.ExceptionFactoryUtil;
-import cn.xinyuan.content.service.ItemCatService;
+import cn.xinyuan.service.ItemCatService;
 import cn.xinyuan.mapper.TbItemCatMapper;
 import cn.xinyuan.pojo.TbItemCat;
 import cn.xinyuan.pojo.TbItemCatExample;
