@@ -9,7 +9,9 @@ import cn.xinyuan.mapper.TbItemDescMapper;
 import cn.xinyuan.pojo.TbItemDesc;
 import cn.xinyuan.service.ItemService;
 import cn.xinyuan.service.SequenceService;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
@@ -33,6 +35,10 @@ public class ItemServiceImpl implements ItemService {
 	private TbItemDescMapper itemDescMapper;
 	@Autowired
 	private SequenceService sequenceService ;
+
+	@Autowired
+	@Qualifier("searchItemSolrRabbitmq")
+	private AmqpTemplate searchItemSolrRabbitmq;
 
 	@Override
 	public TbItem getItemById(long itemId) {
@@ -75,8 +81,10 @@ public class ItemServiceImpl implements ItemService {
 		itemDesc.setItemDesc(desc);
 		itemDesc.setItemId(itemId);
 		itemDescMapper.insert(itemDesc);
-		
-		return ;
+		//发送消息给队列
+		searchItemSolrRabbitmq.convertAndSend("xinyuan.item.info",itemId);
+
+		return XinYuanResult.ok();
 	}
 
 
