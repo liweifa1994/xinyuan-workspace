@@ -1,7 +1,0 @@
-#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
-#Sat Aug 12 08:50:05 CST 2017
-@default-spy-http\://files.couchbase.com/maven2/.lastUpdated=1502498952077
-@default-central-https\://repo.maven.apache.org/maven2/.lastUpdated=1502498952076
-http\://maven.aliyun.com/nexus/content/groups/public/.lastUpdated=1502499005472
-https\://repo.maven.apache.org/maven2/.error=Could not transfer artifact commons-codec\:commons-codec\:pom\:1.6 from/to central (https\://repo.maven.apache.org/maven2)\: The operation was cancelled.
-http\://files.couchbase.com/maven2/.error=Could not transfer artifact commons-codec\:commons-codec\:pom\:1.6 from/to spy (http\://files.couchbase.com/maven2/)\: The operation was cancelled.
