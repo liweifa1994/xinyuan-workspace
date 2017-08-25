@@ -1,8 +1,12 @@
 package cn.xinyuan.service.impl;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import cn.xinyuan.common.util.XinYuanResult;
+import cn.xinyuan.mapper.TbItemDescMapper;
+import cn.xinyuan.pojo.TbItemDesc;
 import cn.xinyuan.service.ItemService;
 import cn.xinyuan.service.SequenceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +28,9 @@ public class ItemServiceImpl implements ItemService {
 
 	@Autowired
 	private TbItemMapper itemMapper;
+
+	@Autowired
+	private TbItemDescMapper itemDescMapper;
 	@Autowired
 	private SequenceService sequenceService ;
 
@@ -51,7 +58,23 @@ public class ItemServiceImpl implements ItemService {
 
 	@Override
 	public XinYuanResult addItem(TbItem item, String desc) {
-
+		SimpleDateFormat dateFormat = new SimpleDateFormat("YYYYMMddHHmmss");
+		String  itemIdString= dateFormat.format(new Date()) + sequenceService.getNextSeqId("tbitem", 1);
+		long itemId = Long.parseLong(itemIdString);
+		item.setId(itemId);
+		//1 正常  2 下架 3 删除
+		item.setStatus((byte)1);
+		item.setCreated(new Date());
+		item.setUpdated(new Date());
+		//添加商品
+		itemMapper.insert(item);
+		//
+		TbItemDesc itemDesc = new TbItemDesc();
+		itemDesc.setUpdated(new Date());
+		itemDesc.setCreated(new Date());
+		itemDesc.setItemDesc(desc);
+		itemDesc.setItemId(itemId);
+		itemDescMapper.insert(itemDesc);
 		return null;
 	}
 
