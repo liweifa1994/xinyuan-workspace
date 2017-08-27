@@ -3,6 +3,7 @@ package cn.xinyuan.search.test.solr;
 import cn.xinyuan.common.pojo.SearchItem;
 import cn.xinyuan.common.pojo.SearchResult;
 import cn.xinyuan.common.util.JSONUtils;
+import cn.xinyuan.pojo.TbItem;
 import cn.xinyuan.search.dao.SearchSolrDao;
 import cn.xinyuan.search.service.SearchItemService;
 import org.apache.solr.client.solrj.SolrQuery;
@@ -17,11 +18,14 @@ import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -34,14 +38,15 @@ import java.util.Map;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations="classpath:spring/applicationContext-*.xml")
+@EnableRabbit
 public class SolrServiceTest {
     @Autowired
     private SolrServer solrServer;
 
     @Autowired
     private SearchItemService searchItemService;
-    @Autowired
-    @Qualifier("searchItemSolrRabbitmq")
+
+    @Resource
     private AmqpTemplate searchItemSolrRabbitmq;
 //    @Autowired
 //    private SearchSolrDao searchSolrDao;
@@ -89,7 +94,13 @@ public class SolrServiceTest {
 
     @Test
     public void testImport(){
-        searchItemSolrRabbitmq.convertAndSend(536563l);
+
+//        searchItemSolrRabbitmq.convertAndSend("xinyuan.item.info",536563l);
+        TbItem tbItem = new TbItem();
+        tbItem.setCreated(new Date());
+        tbItem.setUpdated(new Date());
+        tbItem.setImage("hello world");
+        searchItemSolrRabbitmq.convertAndSend("xinyuan.item.queue.solr.info",tbItem);
     }
 
 

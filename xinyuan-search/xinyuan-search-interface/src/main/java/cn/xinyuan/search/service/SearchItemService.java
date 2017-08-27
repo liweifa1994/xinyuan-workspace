@@ -19,6 +19,12 @@ public interface SearchItemService {
     XinYuanResult imprtItemListToSolr(Long itemId);
 
     /**
+     * 导入商品信息到solr
+     * @param item 商品的json
+     * @return
+     */
+    XinYuanResult imprtItemToSolr();
+    /**
      * 从solr中获取数据
      * @param keyWorkds 查询域的值
      * @param start 从第几条开始显示数据

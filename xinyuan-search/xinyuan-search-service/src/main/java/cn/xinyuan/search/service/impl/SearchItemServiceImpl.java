@@ -62,6 +62,11 @@ public class SearchItemServiceImpl implements SearchItemService {
     }
 
     @Override
+    public XinYuanResult imprtItemToSolr() {
+        return null;
+    }
+
+    @Override
     public SearchResult getItemList( String keyWorkds, int start, int rows) {
         SolrQuery query = new SolrQuery();
         query.setQuery(keyWorkds);
@@ -82,4 +87,8 @@ public class SearchItemServiceImpl implements SearchItemService {
     }
 
 
+    public XinYuanResult imprtItemToSolr(String item) {
+
+        return null;
+    }
 }

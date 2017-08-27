@@ -3,6 +3,7 @@ package cn.xinyuan.service;
 import cn.xinyuan.common.util.EasyUIDataGridResult;
 import cn.xinyuan.common.util.XinYuanResult;
 import cn.xinyuan.pojo.TbItem;
+import cn.xinyuan.pojo.TbItemDesc;
 
 public interface ItemService {
 	
@@ -28,4 +29,12 @@ public interface ItemService {
 	 * @return
 	 */
 	XinYuanResult addItem(TbItem item, String desc);
+
+	/**
+	 * 根据商品的ID获取商品描述信息
+	 * @param itemId
+	 * @return
+	 */
+	TbItemDesc getItemDescById(long itemId);
+
 }

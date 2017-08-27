@@ -13,7 +13,8 @@
                                channel-cache-size="${rabbitmq.channel.cache.size}"/>
     <rabbit:admin connection-factory="connectionFactory"/>
     <!-- queue 队列声明-->
-    <rabbit:queue durable="true" auto-delete="false"  name="xinyuan.item.queue"/>
+    <rabbit:queue durable="true" auto-delete="false"  name="itemMqQueueSolr"/>
+
     <!-- spring template声明-->
     <rabbit:template exchange="xinyuan.item.exchange" id="searchItemSolrRabbitmq"
                      connection-factory="connectionFactory" message-converter="jsonMessageConverter"/>
@@ -23,11 +24,11 @@
     <rabbit:topic-exchange name="xinyuan.item.exchange">
         <rabbit:bindings>
             <!--使用 xinyuan.item.info 来匹配队列-->
-            <rabbit:binding queue="xinyuan.item.queue" pattern="xinyuan.item.info"></rabbit:binding>
+            <rabbit:binding queue="itemMqQueueSolr" pattern="xinyuan.item.info"></rabbit:binding>
         </rabbit:bindings>
     </rabbit:topic-exchange>
     <!-- queue litener  观察 监听模式 当有消息到达时会通知监听在对应的队列上的监听对象-->
     <rabbit:listener-container connection-factory="connectionFactory" acknowledge="auto">
-        <rabbit:listener queues="xinyuan.item.queue" ref="searchItemSolrServiceImpl"/>
+        <rabbit:listener queues="itemMqQueueSolr" ref="searchItemSolrServiceImpl"/>
     </rabbit:listener-container>
 </beans>
