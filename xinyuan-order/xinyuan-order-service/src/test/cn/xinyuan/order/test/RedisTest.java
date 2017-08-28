@@ -36,10 +36,7 @@ public class RedisTest {
 
     @Test
     public void testInc(){
-       // RedisTemplate<String,String> redisTemplate = new RedisTemplate<>();
-      //  redisTemplate.setConnectionFactory(jedisConnectionFactory);
-      //  redisTemplate.setValueSerializer(new StringRedisSerializer());
-       // redisTemplate.afterPropertiesSet();
+
         String key ="hello";
         ValueOperations<String, String> longValueOperations = redisTemplate.opsForValue();
         longValueOperations.set(key,"1");
