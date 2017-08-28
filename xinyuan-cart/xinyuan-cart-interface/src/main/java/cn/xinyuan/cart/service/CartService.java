@@ -27,7 +27,7 @@ public interface CartService {
      * @param itemList
      * @return
      */
-    XinYuanResult addCard(long userId, List<TbItem> itemList);
+    XinYuanResult megerCard(long userId, List<TbItem> itemList);
 
     /**
      * 获取购物车列表
